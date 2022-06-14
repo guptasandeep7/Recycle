@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "330333519415",
+    "project_id": "recycle-45611",
+    "storage_bucket": "recycle-45611.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:330333519415:android:ed9f273307460f80dd89b2",
+        "android_client_info": {
+          "package_name": "com.example.recycle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "330333519415-3ub84717esano2tdrskimgefqkc93kfi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.recycle",
+            "certificate_hash": "e164a3e16fe7241b379e8087a0c8114c986e33e7"
+          }
+        },
+        {
+          "client_id": "330333519415-pncartbp644g7re8g6rrbcig8eb4lsa8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvFlBiH_3rLcEPxzNflYEXsxsxSj9oTCU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "330333519415-pncartbp644g7re8g6rrbcig8eb4lsa8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-package com.example.recycle
+package com.example.recycle.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
