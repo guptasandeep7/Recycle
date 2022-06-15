@@ -1,4 +1,4 @@
-package com.example.recycle.Ui
+package com.example.recycle.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
-import com.example.recycle.Network.Api
 import com.example.recycle.Network.ServiceBuilder
 import com.example.recycle.R
 import com.example.recycle.databinding.FragmentSignUpBinding
