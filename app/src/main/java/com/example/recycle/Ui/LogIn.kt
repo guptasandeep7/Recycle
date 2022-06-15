@@ -11,9 +11,15 @@ import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.recycle.Network.Api
+import com.example.recycle.Network.ServiceBuilder
 import com.example.recycle.R
 import com.example.recycle.databinding.FragmentLogInBinding
 import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class LogIn : Fragment() {

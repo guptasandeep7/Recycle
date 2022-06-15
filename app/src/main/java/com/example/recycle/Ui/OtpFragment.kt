@@ -1,5 +1,6 @@
 package com.example.recycle.Ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.example.recycle.Activity.MainActivity
+import com.example.recycle.Network.Api
+import com.example.recycle.Network.ServiceBuilder
 import com.example.recycle.R
 import com.example.recycle.databinding.FragmentOtpBinding
 import com.google.android.gms.dynamic.SupportFragmentWrapper
@@ -20,6 +24,11 @@ import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 
 
@@ -27,6 +36,7 @@ class OtpFragment : Fragment() {
     lateinit var binding:FragmentOtpBinding
     private var mAuth: FirebaseAuth? = null
     var phoneNumber=""
+    var name=""
 
     private var verificationId: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,7 +122,44 @@ class OtpFragment : Fragment() {
         mAuth!!.signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(requireContext(),"Success",Toast.LENGTH_LONG).show()
+                    if(findNavController().previousBackStackEntry!!.destination.id==R.id.logIn)
+                    {
+                        var Api = ServiceBuilder.buildService()
+                        Api.logIn(phoneNumber).enqueue(object : Callback<ResponseBody?> {
+                            override fun onResponse(
+                                call: Call<ResponseBody?>,
+                                response: Response<ResponseBody?>
+                            ) {
+                                when {
+                                    response.isSuccessful -> {val intent=Intent(activity,MainActivity::class.java)
+                                        startActivity(intent)}
+                                }
+                            }
+
+                            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+                                TODO("Not yet implemented")
+                            }
+                        })
+                    }
+                    else {
+                        var Api=ServiceBuilder.buildService()
+                        Api.signUp(SignUp.profilename.toString(),phoneNumber).enqueue(object : Callback<ResponseBody?> {
+                            override fun onResponse(
+                                call: Call<ResponseBody?>,
+                                response: Response<ResponseBody?>
+                            ) {
+                                when {
+                                    response.isSuccessful ->{val intent=Intent(activity,MainActivity::class.java)
+                                    startActivity(intent)}
+
+                                }
+                            }
+
+                            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+                                TODO("Not yet implemented")
+                            }
+                        })
+                    }
                 } else {
                     Toast.makeText(
                         requireContext(),

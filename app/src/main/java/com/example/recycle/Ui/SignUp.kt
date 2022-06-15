@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import com.example.recycle.Network.Api
+import com.example.recycle.Network.ServiceBuilder
 import com.example.recycle.R
 import com.example.recycle.databinding.FragmentSignUpBinding
 
@@ -17,6 +19,7 @@ class SignUp : Fragment() {
     companion object
     {
         lateinit var phoneNumber:String
+        lateinit var profilename:String
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,16 +36,22 @@ class SignUp : Fragment() {
             phoneNumber=binding.SignUpMobileNo.text.toString()
             var mobileNo=binding.SignUpMobileNo.text.toString()
             var name=binding.SignUpNameOtp.text.toString()
+            profilename=name
             if(mobileNo.length<10)
             {
                 binding.MobileNoSignUp.helperText="Please Enter Valid Mobile Number"
+                binding.textInputLayout.helperText=""
             }
             else if(name.isEmpty())
             {
                 binding.textInputLayout.helperText="Please Enter The Name"
+                binding.MobileNoSignUp.helperText=""
             }
             else
             {
+                var Api =  ServiceBuilder.buildService()
+                Api.signUp(name,mobileNo)
+
                 findNavController().navigate(R.id.otpFragment)
             }
 
