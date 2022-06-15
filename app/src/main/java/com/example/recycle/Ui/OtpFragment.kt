@@ -61,8 +61,7 @@ class OtpFragment : Fragment() {
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_otp, container, false)
         binding.Verifybutton.setOnClickListener {
-
-            verifyCode(binding.firstPinView.getText().toString())
+            verifyCode(binding.firstPinView.text.toString())
         }
         return binding.root
     }
@@ -85,9 +84,7 @@ class OtpFragment : Fragment() {
                 val code = phoneAuthCredential.smsCode
 
                 if (code != null) {
-
                     binding.firstPinView.setText(code)
-
                     verifyCode(code)
                 }
             }
@@ -124,7 +121,7 @@ class OtpFragment : Fragment() {
                 if (task.isSuccessful) {
                     if(findNavController().previousBackStackEntry!!.destination.id==R.id.logIn)
                     {
-                        var Api = ServiceBuilder.buildService()
+                        var Api = ServiceBuilder.init()
                         Api.logIn(phoneNumber).enqueue(object : Callback<ResponseBody?> {
                             override fun onResponse(
                                 call: Call<ResponseBody?>,
@@ -133,6 +130,10 @@ class OtpFragment : Fragment() {
                                 when {
                                     response.isSuccessful -> {val intent=Intent(activity,MainActivity::class.java)
                                         startActivity(intent)}
+                                    else->
+                                    {
+                                        Toast.makeText(requireContext(),response.code().toString(),Toast.LENGTH_LONG).show()
+                                    }
                                 }
                             }
 
@@ -142,16 +143,20 @@ class OtpFragment : Fragment() {
                         })
                     }
                     else {
-                        var Api=ServiceBuilder.buildService()
-                        Api.signUp(SignUp.profilename.toString(),phoneNumber).enqueue(object : Callback<ResponseBody?> {
+                        var Api=ServiceBuilder.init()
+                        var call=Api.signUp(SignUp.profilename,phoneNumber)
+                            call.enqueue(object : Callback<ResponseBody?> {
                             override fun onResponse(
                                 call: Call<ResponseBody?>,
                                 response: Response<ResponseBody?>
                             ) {
                                 when {
                                     response.isSuccessful ->{val intent=Intent(activity,MainActivity::class.java)
-                                    startActivity(intent)}
-
+                                        startActivity(intent)}
+                                    else->
+                                    {
+                                        Toast.makeText(requireContext(),response.message().toString(),Toast.LENGTH_LONG).show()
+                                    }
                                 }
                             }
 
@@ -170,5 +175,7 @@ class OtpFragment : Fragment() {
                 }
             }
     }
+
+
 
 }

@@ -49,9 +49,6 @@ class SignUp : Fragment() {
             }
             else
             {
-                var Api =  ServiceBuilder.buildService()
-                Api.signUp(name,mobileNo)
-
                 findNavController().navigate(R.id.otpFragment)
             }
 
