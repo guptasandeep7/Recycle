@@ -4,15 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/KUNAL/AndroidStudioProjects/Recycle/app/src/main/res/drawable/border.xml" value="0.1655" />
-        <entry key="..\:/Users/KUNAL/AndroidStudioProjects/Recycle/app/src/main/res/drawable/ic_coin.xml" value="0.1625" />
         <entry key="..\:/Users/KUNAL/AndroidStudioProjects/Recycle/app/src/main/res/drawable/ic_recycle.xml" value="0.24" />
-        <entry key="..\:/Users/KUNAL/AndroidStudioProjects/Recycle/app/src/main/res/font/montserrat_alternates_bold.xml" value="0.22710004221190375" />
-        <entry key="..\:/Users/KUNAL/AndroidStudioProjects/Recycle/app/src/main/res/layout-land/fragment_card_view_goals.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/KUNAL/AndroidStudioProjects/Recycle/app/src/main/res/layout/activity_auth_acitivity.xml" value="0.25" />
         <entry key="..\:/Users/KUNAL/AndroidStudioProjects/Recycle/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/KUNAL/AndroidStudioProjects/Recycle/app/src/main/res/layout/fragment_card_view_goals.xml" value="0.176" />
         <entry key="..\:/Users/KUNAL/AndroidStudioProjects/Recycle/app/src/main/res/layout/fragment_first.xml" value="0.1875" />
-        <entry key="..\:/Users/KUNAL/AndroidStudioProjects/Recycle/app/src/main/res/layout/fragment_home_page.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/KUNAL/AndroidStudioProjects/Recycle/app/src/main/res/layout/fragment_log_in.xml" value="0.1902497027348395" />
         <entry key="..\:/Users/KUNAL/AndroidStudioProjects/Recycle/app/src/main/res/layout/fragment_log_in2.xml" value="0.25" />
         <entry key="..\:/Users/KUNAL/AndroidStudioProjects/Recycle/app/src/main/res/layout/fragment_otp.xml" value="0.264" />
