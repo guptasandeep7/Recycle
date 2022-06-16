@@ -203,9 +203,10 @@
                 android:id="@+id/leaderboard_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_marginTop="60dp"
                 android:orientation="vertical"
+                android:paddingBottom="70dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/leaderboard_item_list" />
 
         </androidx.cardview.widget.CardView>

@@ -9,10 +9,16 @@
         android:id="@+id/homeFragment"
         android:name="com.example.recycle.ui.dash.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+    </fragment>
     <fragment
         android:id="@+id/achievementFragment"
         android:name="com.example.recycle.ui.dash.AchievementFragment"
         android:label="fragment_achievement"
         tools:layout="@layout/fragment_achievement" />
+    <fragment
+        android:id="@+id/congoFragment"
+        android:name="com.example.recycle.ui.dash.CongoFragment"
+        android:label="fragment_congo"
+        tools:layout="@layout/fragment_congo" />
 </navigation>

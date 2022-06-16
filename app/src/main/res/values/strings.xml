@@ -8,4 +8,6 @@
     <string name="days">days</string>
     <string name="_25">25</string>
     <string name="leaderboard">Leaderboard</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="share">Share</string>
 </resources>
