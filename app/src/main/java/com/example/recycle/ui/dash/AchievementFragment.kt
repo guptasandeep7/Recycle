@@ -24,8 +24,6 @@ class AchievementFragment : Fragment() {
         userList.add(LeaderboardUser("Ayush",10,R.drawable.avtaar))
         userList.add(LeaderboardUser("Kunal",1,R.drawable.avtaar))
 
-
-
     }
 
     override fun onCreateView(
