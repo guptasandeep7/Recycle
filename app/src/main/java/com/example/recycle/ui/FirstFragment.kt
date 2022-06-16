@@ -1,4 +1,4 @@
-package com.example.recycle.Ui
+package com.example.recycle.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

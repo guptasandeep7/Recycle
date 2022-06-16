@@ -1,4 +1,4 @@
-package com.example.recycle.Ui
+package com.example.recycle.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,16 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.recycle.Activity.MainActivity
-import com.example.recycle.Network.Api
 import com.example.recycle.Network.ServiceBuilder
 import com.example.recycle.R
 import com.example.recycle.databinding.FragmentOtpBinding
-import com.google.android.gms.dynamic.SupportFragmentWrapper
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
@@ -28,7 +24,6 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 
 
