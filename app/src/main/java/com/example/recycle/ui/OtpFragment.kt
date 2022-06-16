@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.recycle.Activity.MainActivity
 import com.example.recycle.Network.ServiceBuilder
 import com.example.recycle.R
+import com.example.recycle.Repo.Datastore
 import com.example.recycle.databinding.FragmentOtpBinding
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
@@ -32,10 +33,12 @@ class OtpFragment : Fragment() {
     private var mAuth: FirebaseAuth? = null
     var phoneNumber=""
     var name=""
+    lateinit var datastore: Datastore
 
     private var verificationId: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        datastore = Datastore(requireContext())
         mAuth = FirebaseAuth.getInstance()
         phoneNumber= if(findNavController().previousBackStackEntry!!.destination.id==R.id.logIn) {
             "+91${LogIn.phoneNumber}"
@@ -114,6 +117,9 @@ class OtpFragment : Fragment() {
         mAuth!!.signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    lifecycleScope.launch {
+                        datastore.changeLoginState(true)
+                    }
                     if(findNavController().previousBackStackEntry!!.destination.id==R.id.logIn)
                     {
                         var Api = ServiceBuilder.init()
@@ -145,6 +151,18 @@ class OtpFragment : Fragment() {
                                 call: Call<ResponseBody?>,
                                 response: Response<ResponseBody?>
                             ) {
+                                lifecycleScope.launch {
+                                    datastore.saveToDatastore(
+                                        Datastore.NAME_KEY,
+                                        name,
+                                        requireContext()
+                                    )
+                                    datastore.saveToDatastore(
+                                        Datastore.PHONE_NUMBER,
+                                        phoneNumber,
+                                        requireContext()
+                                    )
+                                }
                                 when {
                                     response.isSuccessful ->{val intent=Intent(activity,MainActivity::class.java)
                                         startActivity(intent)}
