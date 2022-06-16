@@ -66,5 +66,8 @@ dependencies {
     // Preferences DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     implementation("androidx.datastore:datastore:1.0.0")
-
+    //Image Slider
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.0.6'
+    //ExpandableTextView
+    implementation "com.ms-square:expandableTextView:0.1.4"
 }
