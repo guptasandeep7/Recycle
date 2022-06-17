@@ -1,13 +1,23 @@
 package com.example.recycle.Ui.dash
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.media.ThumbnailUtils
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.PermissionChecker
+import androidx.core.content.PermissionChecker.checkSelfPermission
 import androidx.databinding.DataBindingUtil
+import com.example.recycle.Activity.CameraActivity
 import com.example.recycle.Activity.MainActivity
 import com.example.recycle.R
 import com.example.recycle.databinding.FragmentObjectDetectionBinding
@@ -17,7 +27,8 @@ import com.google.mlkit.vision.objects.ObjectDetection
 import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
 
 class ObjectDetection : Fragment() {
-
+    val imageSize = 224
+    companion object{lateinit var image: Bitmap}
     lateinit var binding:FragmentObjectDetectionBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,10 +41,25 @@ class ObjectDetection : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_object_detection, container, false)
-        binding.imageView3.setImageBitmap(MainActivity.image)
-        classifyImage(MainActivity.image)
+        if (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                checkSelfPermission(requireContext(),Manifest.permission.CAMERA) == PermissionChecker.PERMISSION_GRANTED
+            } else {
+                TODO("VERSION.SDK_INT < M")
+            }
+        ) {
+            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(cameraIntent, 1)
+
+        } else {
+            //Request camera permission if we don't have it.
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(arrayOf(Manifest.permission.CAMERA), 100)
+            }
+        }
+
         return binding.root
     }
+
     private fun classifyImage(image: Bitmap) {
 
         val localModel = LocalModel.Builder()
@@ -69,5 +95,17 @@ class ObjectDetection : Fragment() {
             }.addOnCanceledListener {
                 Toast.makeText(requireContext(), "Canceled", Toast.LENGTH_SHORT).show()
             }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 1 && resultCode == AppCompatActivity.RESULT_OK) {
+            image = data!!.extras!!["data"] as Bitmap
+            val dimension = Math.min(image!!.width, image!!.height)
+           image = ThumbnailUtils.extractThumbnail(image, dimension, dimension)
+            binding.imageView3.setImageBitmap(image)
+
+            image = Bitmap.createScaledBitmap(image, imageSize, imageSize, false)
+            classifyImage(image)
+        }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }
