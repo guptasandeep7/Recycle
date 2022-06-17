@@ -15,8 +15,4 @@
         android:name="com.example.recycle.ui.dash.AchievementFragment"
         android:label="fragment_achievement"
         tools:layout="@layout/fragment_achievement" />
-    <fragment
-        android:id="@+id/objectDetection"
-        android:name="com.example.recycle.Ui.dash.ObjectDetection"
-        android:label="ObjectDetection" />
 </navigation>
