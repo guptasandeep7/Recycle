@@ -37,6 +37,13 @@ android {
             {
                 enabled true
             }
+    sourceSets {
+        main {
+            assets {
+                srcDirs 'src\\main\\assets'
+            }
+        }
+    }
 }
 
 dependencies {
@@ -69,4 +76,6 @@ dependencies {
     def lottieVersion = "5.0.3"
     implementation "com.airbnb.android:lottie:$lottieVersion"
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
+    //CustomObjectDetection
+    implementation 'com.google.mlkit:object-detection-custom:17.0.0'
 }

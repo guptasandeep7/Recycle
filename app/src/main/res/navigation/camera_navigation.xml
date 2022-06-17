@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/camera_navigation"
+    app:startDestination="@id/objectDetection">
+
+    <fragment
+        android:id="@+id/objectDetection"
+        android:name="com.example.recycle.Ui.dash.ObjectDetection"
+        android:label="ObjectDetection" />
+</navigation>

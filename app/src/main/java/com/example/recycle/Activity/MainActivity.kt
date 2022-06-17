@@ -3,7 +3,6 @@ package com.example.recycle.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.recycle.R
@@ -22,9 +21,5 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragment_dash_container) as NavHostFragment
         val navController: NavController = navHostFragment.navController
         binding.bottomNavigationView.setupWithNavController(navController)
-
-        binding.floatingButton.setOnClickListener{
-            navController.navigate(R.id.congoFragment)
-        }
     }
 }
