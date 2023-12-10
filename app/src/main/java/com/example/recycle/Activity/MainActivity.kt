@@ -1,5 +1,6 @@
 package com.example.recycle.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -21,5 +22,9 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragment_dash_container) as NavHostFragment
         val navController: NavController = navHostFragment.navController
         binding.bottomNavigationView.setupWithNavController(navController)
+
+        binding.floatingButton.setOnClickListener {
+            startActivity(Intent(this,CameraActivity::class.java))
+        }
     }
 }

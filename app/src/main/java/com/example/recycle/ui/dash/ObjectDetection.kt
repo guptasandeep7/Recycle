@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.PermissionChecker
 import androidx.core.content.PermissionChecker.checkSelfPermission
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.example.recycle.Activity.CameraActivity
 import com.example.recycle.Activity.MainActivity
 import com.example.recycle.R
@@ -58,6 +59,15 @@ class ObjectDetection : Fragment() {
         }
 
         return binding.root
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.materialButton.setOnClickListener {
+            findNavController().navigate(R.id.action_objectDetection_to_congoFragment)
+        }
     }
 
     private fun classifyImage(image: Bitmap) {

@@ -16,9 +16,4 @@
         android:name="com.example.recycle.ui.dash.AchievementFragment"
         android:label="fragment_achievement"
         tools:layout="@layout/fragment_achievement" />
-    <fragment
-        android:id="@+id/congoFragment"
-        android:name="com.example.recycle.ui.dash.CongoFragment"
-        android:label="fragment_congo"
-        tools:layout="@layout/fragment_congo" />
 </navigation>

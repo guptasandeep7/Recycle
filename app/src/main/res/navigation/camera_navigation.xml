@@ -7,5 +7,14 @@
     <fragment
         android:id="@+id/objectDetection"
         android:name="com.example.recycle.Ui.dash.ObjectDetection"
-        android:label="ObjectDetection" />
+        android:label="ObjectDetection" >
+        <action
+            android:id="@+id/action_objectDetection_to_congoFragment"
+            app:destination="@id/congoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/congoFragment"
+        android:name="com.example.recycle.ui.dash.CongoFragment"
+        android:label="fragment_congo" />
 </navigation>

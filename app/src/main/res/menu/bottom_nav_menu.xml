@@ -4,7 +4,8 @@
         android:icon="@drawable/home"
         android:id="@+id/homeFragment"
         />
-    <item android:title="" />
+    <item android:title=""
+        android:id="@+id/objectDetection"/>
     <item android:title="@string/achievements"
         android:icon="@drawable/achievement"
         android:id="@+id/achievementFragment"
