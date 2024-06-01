@@ -1,20 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/camera_navigation"
     app:startDestination="@id/objectDetection">
 
     <fragment
         android:id="@+id/objectDetection"
-        android:name="com.example.recycle.Ui.dash.ObjectDetection"
-        android:label="ObjectDetection" >
+        android:name="com.example.recycle.ui.dash.ObjectDetection"
+        android:label="ObjectDetection"
+        tools:layout="@layout/fragment_object_detection">
         <action
             android:id="@+id/action_objectDetection_to_congoFragment"
             app:destination="@id/congoFragment" />
+        <action
+            android:id="@+id/action_objectDetection_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/congoFragment"
         android:name="com.example.recycle.ui.dash.CongoFragment"
-        android:label="fragment_congo" />
+        android:label="fragment_congo"
+        tools:layout="@layout/fragment_congo"/>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.recycle.ui.dash.CartFragment"
+        android:label="CartFragment"
+        tools:layout="@layout/fragment_cart"/>
 </navigation>

@@ -1,5 +1,6 @@
 package com.example.recycle.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -59,7 +60,12 @@ class OtpFragment : Fragment() {
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_otp, container, false)
         binding.Verifybutton.setOnClickListener {
-            verifyCode(binding.firstPinView.text.toString())
+            if(binding.firstPinView.text.isNullOrBlank() || binding.firstPinView.text?.length!! < 6){
+                Toast.makeText(requireContext(), "Please enter OTP", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                verifyCode(binding.firstPinView.text.toString())
+            }
         }
         return binding.root
     }
@@ -112,6 +118,7 @@ class OtpFragment : Fragment() {
         signInWithCredential(credential)
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun signInWithCredential(credential: PhoneAuthCredential) {
 
         mAuth!!.signInWithCredential(credential)
@@ -128,14 +135,15 @@ class OtpFragment : Fragment() {
                                 call: Call<ResponseBody?>,
                                 response: Response<ResponseBody?>
                             ) {
-                                when {
-                                    response.isSuccessful -> {val intent=Intent(activity,MainActivity::class.java)
-                                        startActivity(intent)}
-                                    else->
-                                    {
-                                        Toast.makeText(requireContext(),response.code().toString(),Toast.LENGTH_LONG).show()
-                                    }
-                                }
+                                val intent=Intent(activity,MainActivity::class.java)
+                                startActivity(intent)
+//                                when {
+//                                    response.isSuccessful -> {}
+//                                    else->
+//                                    {
+//                                        Toast.makeText(requireContext(),response.code().toString(),Toast.LENGTH_LONG).show()
+//                                    }
+//                                }
                             }
 
                             override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
@@ -144,8 +152,8 @@ class OtpFragment : Fragment() {
                         })
                     }
                     else {
-                        var Api=ServiceBuilder.init()
-                        var call=Api.signUp(SignUp.profilename,phoneNumber)
+                        val Api=ServiceBuilder.init()
+                        val call=Api.signUp(SignUp.profilename,phoneNumber)
                             call.enqueue(object : Callback<ResponseBody?> {
                             override fun onResponse(
                                 call: Call<ResponseBody?>,
@@ -162,15 +170,18 @@ class OtpFragment : Fragment() {
                                         phoneNumber,
                                         requireContext()
                                     )
+
+                                    val intent=Intent(activity,MainActivity::class.java)
+                                    startActivity(intent)
                                 }
-                                when {
-                                    response.isSuccessful ->{val intent=Intent(activity,MainActivity::class.java)
-                                        startActivity(intent)}
-                                    else->
-                                    {
-                                        Toast.makeText(requireContext(),response.message().toString(),Toast.LENGTH_LONG).show()
-                                    }
-                                }
+
+//                                when {
+//                                    response.isSuccessful ->{}
+//                                    else->
+//                                    {
+//                                        Toast.makeText(requireContext(),response.message().toString(),Toast.LENGTH_LONG).show()
+//                                    }
+//                                }
                             }
 
                             override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
@@ -181,7 +192,7 @@ class OtpFragment : Fragment() {
                 } else {
                     Toast.makeText(
                         requireContext(),
-                        task.exception!!.message,
+                        task.exception?.message,
                         Toast.LENGTH_LONG
                     )
                         .show()
